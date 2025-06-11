@@ -1,0 +1,32 @@
+<div class="mt-6">
+    <h3 class="text-lg font-semibold mb-2">Upload CSV for Bulk Prediction</h3>
+    <form id="csvForm" enctype="multipart/form-data">
+      <input type="file" name="file" accept=".csv" required class="mb-2">
+      <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded-lg">Upload & Predict</button>
+    </form>
+    <div id="csvResult" class="mt-4 text-sm text-gray-700"></div>
+  </div>
+  
+  <script>
+    const csvForm = document.getElementById('csvForm');
+    const csvResult = document.getElementById('csvResult');
+  
+    csvForm.addEventListener('submit', async function(event) {
+      event.preventDefault();
+      const formData = new FormData(csvForm);
+  
+      const response = await fetch('/uploadcsv', {
+        method: 'POST',
+        body: formData
+      });
+  
+      const result = await response.json();
+  
+      if (result.error) {
+        csvResult.textContent = 'Error: ' + result.error;
+      } else {
+        csvResult.innerHTML = `<strong>Predictions:</strong><pre>${JSON.stringify(result.predictions, null, 2)}</pre>`;
+      }
+    });
+  </script>
+  

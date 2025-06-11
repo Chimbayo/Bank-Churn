@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 min-h-screen" style="background-color: black;">
+
+  <!-- Navigation bar -->
+  <nav class="bg-white shadow p-4 flex justify-between items-center">
+    <div class="text-xl font-bold">BANK CUSTOMER CHURN PREDICTION SYSTEM</div>
+    <div class="space-x-4">
+      <a href="/about" class="text-blue-600 hover:underline">About the System</a>
+      <a href="/contacts" class="text-gray-700 hover:text-blue-600">Contacts</a>
+      <a href="/login" class="text-red-600 hover:underline">Logout</a>
+    </div>
+  </nav>
+
+  <!-- Dashboard Layout -->
+  <div class="flex max-w-7xl mx-auto mt-10 p-4 space-x-4">
+    <!-- Left Sidebar -->
+    <aside class="w-1/3 bg-white p-4 rounded-2xl shadow-md space-y-4">
+      <h3 class="text-xl font-semibold">Dashboard Features</h3>
+      <ul class="list-disc list-inside text-gray-700 space-y-2">
+        <li><a href="#" class="text-blue-600 hover:underline">Search & Filter Customers</a></li>
+        <li><a href="#" class="text-blue-600 hover:underline">Churn Prediction Results</a></li>
+        <li><a href="#" class="text-blue-600 hover:underline">Analytics Summary</a></li>
+        <li><a href="#" class="text-blue-600 hover:underline">Customer Risk Profile</a></li>
+        <li><a href="/uploadcsv" class="text-blue-600 hover:underline">Upload Customer CSV</a></li>
+        <li><a href="#" class="text-blue-600 hover:underline">Download Reports</a></li>
+        <li><a href="#" class="text-blue-600 hover:underline">Customer Profile Viewer</a></li>
+      </ul>
+    </aside>
+
+    <!-- Right Main Content -->
+    <main class="w-2/3 p-6 bg-white rounded-2xl shadow-md">
+      <h2 class="text-2xl font-bold mb-6">Enter Customer Information</h2>
+      <form id="customerForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label class="block mb-1 font-medium">Age</label>
+          <input type="number" id="age" name="age" required min="18" class="w-full border px-4 py-2 rounded-lg">
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Gender</label>
+          <select id="gender" name="gender" required class="w-full border px-4 py-2 rounded-lg">
+            <option value="" disabled selected>Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Credit Score</label>
+          <input type="number" id="creditscore" name="creditscore" required min="300" max="850" class="w-full border px-4 py-2 rounded-lg">
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">District</label>
+          <select id="district" name="district" required class="w-full border px-4 py-2 rounded-lg">
+            <option value="" disabled selected>Select customer District</option>
+        </select>
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Tenure (years)</label>
+          <input type="number" id="tenure" name="tenure" required min="0" class="w-full border px-4 py-2 rounded-lg">
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Region</label>
+          <select id="region" name="region" required class="w-full border px-4 py-2 rounded-lg">
+            <option value="" disabled selected>Select customer Region</option>
+            <option value="Southern">Southern</option>
+            <option value="Central">Central</option>
+            <option value="Northern">Northern</option>
+          </select>
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Number of Products</label>
+          <input type="number" id="products" name="products" required min="1" max="7" class="w-full border px-4 py-2 rounded-lg">
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Location_Type</label>
+          <select id="locationtype" name="locationtype" required class="w-full border px-4 py-2 rounded-lg">
+            <option value="" disabled selected>Select customer Location_Type</option>
+            <option value="Rural">Rural</option>
+            <option value="Urban">Urban</option>
+            <option value="Semi Urban">Semi Urban</option>
+          </select>
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Account Balance</label>
+          <input type="number" id="balance" name="balance" required min="0" class="w-full border px-4 py-2 rounded-lg">
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Customer Type</label>
+          <select id="customertype" name="customertype" required class="w-full border px-4 py-2 rounded-lg">
+            <option value="" disabled selected>Select customer segment</option>
+            <option value="SME">SME</option>
+            <option value="Retail">Retail</option>
+            <option value="Corporate">Corporate</option>
+          </select>
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Income</label>
+          <input type="number" id="income" name="income" required min="0" class="w-full border px-4 py-2 rounded-lg">
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Employment Status</label>
+          <select id="employmentstatus" name="employmentstatus" required class="w-full border px-4 py-2 rounded-lg">
+            <option value="" disabled selected>Select customer Employment Status</option>
+            <option value="Employed">Employed</option>
+            <option value="Self Employed">Self Employed</option>
+            <option value="Not Employed">Not Employed</option>
+          </select>
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Outstanding Loans</label>
+          <input type="number" id="loan" name="loan" required min="0" class="w-full border px-4 py-2 rounded-lg">
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Education Level</label>
+          <select id="educationlevel" name="educationlevel" required class="w-full border px-4 py-2 rounded-lg">
+            <option value="" disabled selected>Select customer Education Level</option>
+            <option value="Primary">Primary</option>
+            <option value="Secondary">Secondary</option>
+            <option value="Tertiary">Tertiary</option>
+          </select>
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Number of Complaints</label>
+          <input type="number" id="complaints" name="complaints" required min="1" max="5" class="w-full border px-4 py-2 rounded-lg">
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Mobile Network Quality</label>
+          <select id="netquality" name="netquality" required class="w-full border px-4 py-2 rounded-lg">
+            <option value="" disabled selected>Select Network Quality</option>
+            <option value="Poor">Poor</option>
+            <option value="Fair">Fair</option>
+            <option value="Good">Good</option>
+          </select>
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Number Of Transaction/month</label>
+          <input type="number" id="transactions" name="transactions" required min="0" class="w-full border px-4 py-2 rounded-lg">
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Phone Ownership</label>
+          <select id="phone" name="phone" required class="w-full border px-4 py-2 rounded-lg">
+            <option value="" disabled selected>Select Phone Ownership</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Distance To The Bank</label>
+          <input type="number" id="distance" name="distance" required min="0" class="w-full border px-4 py-2 rounded-lg">
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Mobile Bank Usage</label>
+          <select id="mobileBank" name="mobileBank" required class="w-full border px-4 py-2 rounded-lg">
+            <option value="" disabled selected>Select Mobile Bank Usage</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+      </form>
+      <button class="mt-6 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300" id="predictButton">Predict</button>
+      <div id="resultArea" class="mt-6 text-center text-xl font-semibold text-blue-700"></div>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById('predictButton').addEventListener('click', function(event) {
+      event.preventDefault();
+    
+      const regionMap = { "Southern": 0, "Northern": 1, "Central": 2 };
+      const genderMap = { "Male": 1, "Female": 0 };
+      const districtMap={"Dedza": 6, "Dowa": 26, "Kasungu": 10, "Lilongwe": 22,"Mchinji": 8, "Nkhotakota": 12, "Ntcheu": 27,
+      "Ntchisi": 9, "Salima": 21,"Chitipa": 11, "Karonga": 5, "Likoma": 20, "Mzimba": 16, "Nkhata Bay": 3, "Rumphi": 24,
+      "Balaka": 25, "Blantyre": 17, "Chikwawa": 2, "Chiradzulu": 7,"Machinga": 4, "Mangochi": 14, "Mulanje": 15,
+      "Mwanza": 23, "Nsanje": 18,"Thyolo": 1, "Phalombe": 19, "Zomba": 0, "Neno": 13 };
+      const customertypeMap = { "Retail": 0, "SME": 1, "Corporate": 2 };
+      const employmentstatusMap = { "Self Employed": 0, "Not Employed": 1, "Employed": 2 };
+      const educationlevelMap = { "Primary": 0, "Secondary": 1, "Tertiary": 2 };
+      const netqualityMap = { "Fair": 0, "Poor": 1, "Good": 2 };
+      const phoneMap = { "Yes": 0, "No": 1,};
+      const mobileBankMap = { "No": 0, "Yes": 1,};
+      const locationtypeMap = { "Rural": 0, "Urban": 1, "Semi Urban": 2 };
+      const customerData = {
+  "Age": document.getElementById('age').value,
+  "Gender": genderMap[document.getElementById('gender').value],
+  "District": districtMap[document.getElementById('district').value],
+  "Region": regionMap[document.getElementById('region').value],
+  "Location_Type": locationtypeMap[document.getElementById('locationtype').value],
+  "Customer_Type": customertypeMap[document.getElementById('customertype').value],
+  "Employment_Status": employmentstatusMap[document.getElementById('employmentstatus').value],
+  "Income_Level": document.getElementById('income').value,
+  "Education_Level": educationlevelMap[document.getElementById('educationlevel').value],
+  "Tenure": document.getElementById('tenure').value,
+  "Balance": document.getElementById('balance').value,
+  "Credit_Score": document.getElementById('creditscore').value,
+  "Outstanding_Loans": document.getElementById('loan').value,
+  "Num_Of_Products": document.getElementById('products').value,
+  "Mobile_Banking_Usage": mobileBankMap[document.getElementById('mobileBank').value],
+  "Number_of _Transactions_per/Month": document.getElementById('transactions').value,
+  "Num_Of_Complaints": document.getElementById('complaints').value,
+  "Proximity_to_NearestBranch_or_ATM (km)": document.getElementById('distance').value,
+  "Mobile_Network_Quality": netqualityMap[document.getElementById('netquality').value],
+  "Owns_Mobile_Phone": phoneMap[document.getElementById('phone').value],
+};
+    
+      fetch('/predict', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(customerData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          document.getElementById('resultArea').innerHTML = `<p class="text-red-600">Error: ${data.error}</p>`;
+        } else {
+          document.getElementById('resultArea').innerHTML = `
+            <p>${data.prediction}</p>
+            <p>Prediction Confidence: ${data.probability}%</p>
+          `;
+        }
+        document.getElementById('customerForm').reset();
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    });
+    </script>  
+    <script>
+  const districtRegionMap = {
+    'Dedza': 'Central', 'Dowa': 'Central', 'Kasungu': 'Central', 'Lilongwe': 'Central',
+    'Mchinji': 'Central', 'Nkhotakota': 'Central', 'Ntcheu': 'Central',
+    'Ntchisi': 'Central', 'Salima': 'Central',
+    'Chitipa': 'Northern', 'Karonga': 'Northern', 'Likoma': 'Northern',
+    'Mzimba': 'Northern', 'Nkhata Bay': 'Northern', 'Rumphi': 'Northern',
+    'Balaka': 'Southern', 'Blantyre': 'Southern', 'Chikwawa': 'Southern',
+    'Chiradzulu': 'Southern', 'Machinga': 'Southern', 'Mangochi': 'Southern',
+    'Mulanje': 'Southern', 'Mwanza': 'Southern', 'Nsanje': 'Southern',
+    'Thyolo': 'Southern', 'Phalombe': 'Southern', 'Zomba': 'Southern', 'Neno': 'Southern'
+  };
+
+  const districtSelect = document.getElementById("district");
+  const regionSelect = document.getElementById("region");
+
+  const allDistricts = Object.keys(districtRegionMap);
+
+  function populateDistricts(districts, selected = "") {
+    districtSelect.innerHTML = `<option value="" disabled ${selected === "" ? "selected" : ""}>Select customer District</option>`;
+    districts.forEach(d => {
+      const opt = document.createElement("option");
+      opt.value = d;
+      opt.textContent = d;
+      if (d === selected) opt.selected = true;
+      districtSelect.appendChild(opt);
+    });
+  }
+
+  // Initial load with all districts
+  populateDistricts(allDistricts);
+
+  // Event: When district is selected, set region automatically
+  districtSelect.addEventListener("change", function () {
+    const selectedDistrict = this.value;
+    const region = districtRegionMap[selectedDistrict];
+
+    // Set region dropdown
+    regionSelect.value = region;
+
+    // Reset districts to show all (in case user later switches region)
+    populateDistricts(allDistricts, selectedDistrict);
+  });
+
+  // Event: When region is selected, filter districts
+  regionSelect.addEventListener("change", function () {
+    const selectedRegion = this.value;
+
+    // Filter districts that belong to this region
+    const filteredDistricts = allDistricts.filter(d => districtRegionMap[d] === selectedRegion);
+
+    populateDistricts(filteredDistricts);
+  });
+</script>
+</body>
+</html>
